@@ -70,7 +70,7 @@ class csvDaoTest {
 		String file = null;
 
 		// when
-		assertNotNull(csvDao.getDataOnCsvs(path, file));
+		assertNotNull(csvDao.getDataOnCsv(path, file));
 
 	}
 
