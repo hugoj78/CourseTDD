@@ -40,10 +40,9 @@ public class RaceCircuitDaoTest {
 	void createRaceCircuitTestOK() {
 		// GIVEN
 		String circuitName = "Penish";
-		List<RaceHorse> raceHorseList = new ArrayList<>();
 
 		// WHEN
-		boolean result = raceCircuitDao.createRaceCircuit(circuitName, raceHorseList);
+		boolean result = raceCircuitDao.createRaceCircuit(circuitName);
 
 		// THEN
 		assertTrue(result);
@@ -53,10 +52,9 @@ public class RaceCircuitDaoTest {
 	void createRaceCircuitTestKO() {
 		// GIVEN
 		String circuitName = "Penish";
-		List<RaceHorse> raceHorseList = new ArrayList<>();
 
 		// WHEN
-		boolean result = raceCircuitDao.createRaceCircuit(circuitName, raceHorseList);
+		boolean result = raceCircuitDao.createRaceCircuit(circuitName);
 
 		// THEN
 		assertFalse(result);
@@ -109,6 +107,42 @@ public class RaceCircuitDaoTest {
 
 		// WHEN
 		boolean result = raceCircuitDao.deleteRaceCircuit(raceCircuit);
+
+		// THEN
+		assertFalse(result);
+	}
+
+	@Test
+	void addRaceHorseToRaceCircuitTestOK() {
+		// GIVEN
+		RaceCircuit raceCircuit = new RaceCircuit();
+
+		List<RaceHorse> raceHorseList = new ArrayList<>();
+
+		for (int i = 0; i < 6; i++) {
+			raceHorseList.add(new RaceHorse());
+		}
+
+		// WHEN
+		boolean result = raceCircuitDao.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
+
+		// THEN
+		assertTrue(result);
+	}
+
+	@Test
+	void addRaceHorseToRaceCircuitTestKO() {
+		// GIVEN
+		RaceCircuit raceCircuit = new RaceCircuit();
+
+		List<RaceHorse> raceHorseList = new ArrayList<>();
+
+		for (int i = 0; i < 6; i++) {
+			raceHorseList.add(new RaceHorse());
+		}
+
+		// WHEN
+		boolean result = raceCircuitDao.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
 
 		// THEN
 		assertFalse(result);

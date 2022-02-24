@@ -7,7 +7,7 @@ import model.RaceHorse;
 
 public class RaceCircuitDao {
 
-	public boolean createRaceCircuit(String circuitName, List<RaceHorse> raceHorseList) {
+	public boolean createRaceCircuit(String circuitName) {
 		return false;
 	}
 
@@ -21,6 +21,11 @@ public class RaceCircuitDao {
 	}
 
 	public boolean deleteRaceCircuit(RaceCircuit raceCircuit) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addRaceHorseToRaceCircuit(RaceCircuit raceCircuit, List<RaceHorse> raceHorseList) {
 		// TODO Auto-generated method stub
 		return false;
 	}
