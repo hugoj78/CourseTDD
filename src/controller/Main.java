@@ -10,9 +10,9 @@ public class Main {
 
 		menu.welcome();
 
-		// while(true) {
-		// menu.choix();
-		// }
+		while (true) {
+			menu.choice();
+		}
 
 	}
 
