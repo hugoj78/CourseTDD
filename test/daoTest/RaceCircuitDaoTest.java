@@ -14,7 +14,7 @@ public class RaceCircuitDaoTest {
 
 	RaceCircuitDao raceCircuitDao;
 
-	// When we create a Circuit we Add All Horse
+	// When we create a Circuit we have to add Horse
 	@Test
 	void createRaceCircuitTest() {
 		// GIVEN
