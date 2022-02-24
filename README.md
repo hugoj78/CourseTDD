@@ -18,7 +18,7 @@ Xxxx
 
 Xxxx
 
-## Consigne hihi
+## 🍕 Consigne 🍕
 Outil de gestion de courses hippiques
 Rendu 08/03 23h59
 Hippodrome (un seul, nom), Course (nom, date, 6 chevaux), cheval(nom, âge, nombre de victoire). Indépendant les uns des autres.
