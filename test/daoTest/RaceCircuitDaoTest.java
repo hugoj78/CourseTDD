@@ -18,6 +18,8 @@ public class RaceCircuitDaoTest {
 	@Test
 	void createRaceCircuitTest() {
 		// GIVEN
+		raceCircuitDao = new RaceCircuitDao();
+
 		String circuitName = "Penish";
 		List<RaceHorse> raceHorseList = new ArrayList<>();
 
