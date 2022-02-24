@@ -1,12 +1,12 @@
 package view;
 
-import model.RaceTrack;
+import controller.RaceTrackController;
 import utils.Utility;
 
 public class Menu {
 
 	// Init Hippodrome
-	RaceTrack raceTrack = new RaceTrack("Leibinou Stadium");
+	RaceTrackController raceTrackController = new RaceTrackController();
 
 	public void welcome() {
 		System.out.println("Welcome to our Awe - wait for it - some Application\n");
@@ -14,7 +14,7 @@ public class Menu {
 
 	public void choice() {
 
-		System.out.println("== = == " + raceTrack.getName() + " == = ==");
+		System.out.println("== = == " + raceTrackController.getRaceTrackName() + " == = ==");
 
 		System.out.println("\nWHat do you want to do ?\n");
 
@@ -31,6 +31,8 @@ public class Menu {
 
 		switch (Utility.userInputString()) {
 		case "1":
+			System.out.println("Type the new Name :");
+			raceTrackController.setRaceTrackName(Utility.userInputString());
 
 			break;
 		case "2":
