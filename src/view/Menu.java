@@ -1,5 +1,7 @@
 package view;
 
+import controller.RaceCircuitController;
+import controller.RaceHorseController;
 import controller.RaceTrackController;
 import utils.Utility;
 
@@ -7,6 +9,8 @@ public class Menu {
 
 	// Init Hippodrome
 	RaceTrackController raceTrackController = new RaceTrackController();
+	RaceCircuitController raceCircuitController = new RaceCircuitController();
+	RaceHorseController raceHorseController = new RaceHorseController();
 
 	public void welcome() {
 		System.out.println("Welcome to our Awe - wait for it - some Application\n");
@@ -33,14 +37,20 @@ public class Menu {
 		case "1":
 			System.out.println("Type the new Name :");
 			raceTrackController.setRaceTrackName(Utility.userInputString());
+			System.out.println("\n");
 
 			break;
 		case "2":
 			System.out.println("=== All Race Circuit ===");
+			Utility.displayAllRaceCircuitByName();
+			System.out.println("\n");
 
 			break;
 		case "3":
 			System.out.println("=== All Race Horse ===");
+			Utility.displayAllRaceHorseByName();
+
+			System.out.println("\n");
 
 			break;
 		case "4":
@@ -49,21 +59,32 @@ public class Menu {
 			break;
 		case "5":
 			System.out.println("\t1 - Create Race Circuit");
-			System.out.println("\t2 - Update Race Circuit");
-			System.out.println("\t3 - Display Race Circuit information");
-			System.out.println("\t4 - Delete Race Circuit");
+			System.out.println("\t2 - Update Race Circuit Name");
+			System.out.println("\t3 - Delete Race Circuit");
+			System.out.println("\t4 - Add Horse to Race Circuit");
 
 			switch (Utility.userInputString()) {
 			case "1":
+				System.out.println("\t=== Create Race Circuit ===");
+				System.out.println("\nType the name of your new Race Circuit :");
+				raceCircuitController.createRaceCircuit(Utility.userInputString());
+				System.out.println("\n");
 
 				break;
 			case "2":
+				System.out.println("\t=== Update Race Circuit Name ===");
+				System.out.println("\n");
 
 				break;
 			case "3":
+				System.out.println("\t=== Delete Race Circuit ===");
+				System.out.println("\n");
 
 				break;
+
 			case "4":
+				System.out.println("\t=== Add Horse to Race Circuit ===");
+				System.out.println("\n");
 
 				break;
 
@@ -75,21 +96,25 @@ public class Menu {
 			break;
 		case "6":
 			System.out.println("\t1 - Create Race Horse");
-			System.out.println("\t2 - Update Race Horse");
-			System.out.println("\t3 - Display Race Horse information");
-			System.out.println("\t4 - Delete Race Horse");
+			System.out.println("\t2 - Update Race Horse Name");
+			System.out.println("\t3 - Delete Race Horse");
 
 			switch (Utility.userInputString()) {
 			case "1":
+				System.out.println("\t=== Create Race Horse ===");
+				System.out.println("\nType the name of your new Race Horse :");
+				raceHorseController.createRaceHorse(Utility.userInputString());
+				System.out.println("\n");
 
 				break;
 			case "2":
+				System.out.println("\t=== Update Race Horse Name ===");
+				System.out.println("\n");
 
 				break;
 			case "3":
-
-				break;
-			case "4":
+				System.out.println("\t=== Delete Race Horse ===");
+				System.out.println("\n");
 
 				break;
 
