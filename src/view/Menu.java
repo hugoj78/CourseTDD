@@ -121,7 +121,7 @@ public class Menu {
 				break;
 			case "2":
 				System.out.println("\t=== Update Race Horse Name ===");
-				Utility.displayAllRaceCircuitByName();
+				Utility.displayAllRaceHorseByName();
 				System.out.println("\nType the name of the Horse you want to update : ");
 				RaceHorse raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
 				if (raceHorse != null) {
