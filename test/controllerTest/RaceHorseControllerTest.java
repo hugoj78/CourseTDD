@@ -1,6 +1,8 @@
 package controllerTest;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -80,6 +82,33 @@ class RaceHorseControllerTest {
 		int nbrRaceHorse = Data.getRaceTrack().raceHorses.size();
 		assertEquals(0, nbrRaceHorse);
 		assertFalse(result);
+	}
+
+	@Test
+	public void getFirstRaceHorseByNameOK() {
+		// GIVEN
+		String raceHorseName = "Mamacita";
+		RaceHorse raceHorse = new RaceHorse(raceHorseName);
+		Data.getRaceTrack().raceHorses.add(raceHorse);
+
+		// WHEN
+		RaceHorse result = raceHorseController.getFirstRaceHorseByName(raceHorseName);
+
+		// THEN
+		assertNotNull(result);
+		assertEquals(raceHorseName, result.name);
+	}
+
+	@Test
+	public void getFirstRaceHorseDoesntExistByNameKO() {
+		// GIVEN
+		String raceHorseName = "Mamacita";
+
+		// WHEN
+		RaceHorse result = raceHorseController.getFirstRaceHorseByName(raceHorseName);
+
+		// THEN
+		assertNull(result);
 	}
 
 }

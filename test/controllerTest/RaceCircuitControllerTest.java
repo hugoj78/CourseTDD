@@ -157,7 +157,7 @@ class RaceCircuitControllerTest {
 	}
 
 	@Test
-	public void getRaceCircuitByNameOK() {
+	public void getFirstRaceCircuitByNameOK() {
 		// GIVEN
 		String raceCircuitName = "Mamacita";
 		RaceCircuit raceCircuit = new RaceCircuit(raceCircuitName);

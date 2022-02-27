@@ -4,6 +4,7 @@ import controller.RaceCircuitController;
 import controller.RaceHorseController;
 import controller.RaceTrackController;
 import model.RaceCircuit;
+import model.RaceHorse;
 import utils.Utility;
 
 public class Menu {
@@ -120,6 +121,16 @@ public class Menu {
 				break;
 			case "2":
 				System.out.println("\t=== Update Race Horse Name ===");
+				Utility.displayAllRaceCircuitByName();
+				System.out.println("\nType the name of the Horse you want to update : ");
+				RaceHorse raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
+				if (raceHorse != null) {
+					System.out.println("\nType the new name for the Horse : ");
+					raceHorseController.updateRaceHorseName(raceHorse, Utility.userInputString());
+
+				} else {
+					System.out.println("There is no RaceHorse with this name");
+				}
 				System.out.println("\n");
 
 				break;

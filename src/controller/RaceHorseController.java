@@ -26,4 +26,8 @@ public class RaceHorseController {
 		return raceHorseDao.deleteRaceHorse(raceHorse);
 	}
 
+	public RaceHorse getFirstRaceHorseByName(String raceHorseName) {
+		return raceHorseDao.getFirstRaceHorseByName(raceHorseName);
+	}
+
 }

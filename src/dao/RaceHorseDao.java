@@ -23,4 +23,14 @@ public class RaceHorseDao {
 		return Data.getRaceTrack().raceHorses.remove(raceHorse);
 	}
 
+	public RaceHorse getFirstRaceHorseByName(String raceHorseName) {
+		List<RaceHorse> raceHorses = Data.getRaceTrack().raceHorses;
+		for (int i = 0; i < raceHorses.size(); i++) {
+			if (raceHorses.get(i).name.equals(raceHorseName)) {
+				return raceHorses.get(i);
+			}
+		}
+		return null;
+	}
+
 }
