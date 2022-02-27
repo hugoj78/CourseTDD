@@ -91,6 +91,7 @@ class RaceCircuitControllerTest {
 		// GIVEN
 		String circuitName = "VroumVroum";
 		RaceCircuit raceCircuit = new RaceCircuit(circuitName);
+		Data.getRaceTrack().raceCircuits.add(raceCircuit);
 
 		List<RaceHorse> raceHorseList = new ArrayList<>();
 

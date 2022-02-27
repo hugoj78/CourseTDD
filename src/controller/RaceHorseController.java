@@ -1,11 +1,18 @@
 package controller;
 
+import java.util.List;
+
 import dao.RaceHorseDao;
+import model.Data;
 import model.RaceHorse;
 
 public class RaceHorseController {
 
 	RaceHorseDao raceHorseDao = new RaceHorseDao();
+
+	public List<RaceHorse> getAllRaceHorses() {
+		return Data.getRaceTrack().raceHorses;
+	}
 
 	public void createRaceHorse(String nameHorse) {
 		raceHorseDao.createRaceHorse(nameHorse);

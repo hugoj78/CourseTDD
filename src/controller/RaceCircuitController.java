@@ -2,29 +2,33 @@ package controller;
 
 import java.util.List;
 
+import dao.RaceCircuitDao;
+import model.Data;
 import model.RaceCircuit;
 import model.RaceHorse;
 
 public class RaceCircuitController {
 
-	public void createRaceCircuit(String nameCircuit) {
-		// TODO Auto-generated method stub
+	RaceCircuitDao raceCircuitDao = new RaceCircuitDao();
 
+	public List<RaceCircuit> getAllRaceCircuits() {
+		return Data.getRaceTrack().raceCircuits;
+	}
+
+	public void createRaceCircuit(String nameCircuit) {
+		raceCircuitDao.createRaceCircuit(nameCircuit);
 	}
 
 	public void updateRaceCircuitName(RaceCircuit raceCircuit, String newNameCircuit) {
-		// TODO Auto-generated method stub
-
+		raceCircuitDao.updateRaceCircuitName(raceCircuit, newNameCircuit);
 	}
 
 	public boolean deleteRaceCircuit(RaceCircuit raceCircuit) {
-		// TODO Auto-generated method stub
-		return false;
+		return raceCircuitDao.deleteRaceCircuit(raceCircuit);
 	}
 
 	public boolean addRaceHorseToRaceCircuit(RaceCircuit raceCircuit, List<RaceHorse> raceHorseList) {
-		// TODO Auto-generated method stub
-		return false;
+		return raceCircuitDao.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
 	}
 
 }
