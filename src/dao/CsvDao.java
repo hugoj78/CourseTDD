@@ -37,6 +37,11 @@ public class CsvDao {
 
 	public boolean createCsv(String path, String file, String extention, List<String> row) {
 
+		if (row == null || row.size() == 0) {
+
+			return false;
+		}
+
 		if (this.pathExist(path, file, extention) == false) {
 			FileWriter csvWriter = null;
 			try {

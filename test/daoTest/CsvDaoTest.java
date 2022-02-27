@@ -68,15 +68,26 @@ class CsvDaoTest {
 		String path = "./src/ressources";
 		String file = "test";
 		String extention = "csv";
-		firstline.add("test1");
-		firstline.add("Test2");
-		firstline.add("test3");
 
 		Files f = new Files(file, path, extention);
 
 		// firstline = ["test1", "nametest","datetest"];
 
 		assertTrue(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention()));
+	}
+
+	@Test
+	public void createCsvWithPathNullTest() {
+		// given
+		String path = null;
+		String file = "test_path_null";
+		String extention = "csv";
+
+		Files f = new Files(file, path, extention);
+
+		// firstline = ["test1", "nametest","datetest"];
+
+		assertFalse(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention()));
 	}
 
 	@Test
@@ -94,6 +105,20 @@ class CsvDaoTest {
 		// firstline = ["test1", "nametest","datetest"];
 
 		assertTrue(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline()));
+	}
+
+	@Test
+	public void createCsvAndFirstLineNullTest() {
+		// given
+		String path = "./src/ressources";
+		String file = "test_without_firstline";
+		String extention = "csv";
+
+		Files f = new Files(file, path, extention, null);
+
+		// firstline = ["test1", "nametest","datetest"];
+
+		assertFalse(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline()));
 	}
 
 	@Test
