@@ -51,7 +51,7 @@ public class RaceCircuitDaoTest {
 	}
 
 	@Test
-	void updateRaceCircuitTestOK() {
+	void updateRaceCircuitNameTestOK() {
 		// GIVEN
 		String newCircuitName = "Penish";
 		RaceCircuit raceCircuit = new RaceCircuit();
@@ -91,7 +91,8 @@ public class RaceCircuitDaoTest {
 	@Test
 	void addRaceHorseToRaceCircuitTestOK() {
 		// GIVEN
-		RaceCircuit raceCircuit = new RaceCircuit();
+		String circuitName = "VroumVroum";
+		RaceCircuit raceCircuit = new RaceCircuit(circuitName);
 
 		List<RaceHorse> raceHorseList = new ArrayList<>();
 
@@ -104,6 +105,9 @@ public class RaceCircuitDaoTest {
 
 		// THEN
 		assertTrue(result);
+		for (int i = 0; i < raceHorseList.size(); i++) {
+			assertEquals(circuitName, raceHorseList.get(i).raceCircuits.get(0).name);
+		}
 	}
 
 	@Test

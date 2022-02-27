@@ -28,6 +28,11 @@ public class RaceCircuitDao {
 		if (raceHorseList.size() != 6) {
 			return false;
 		}
+
+		for (RaceHorse raceHorse : raceHorseList) {
+			raceHorse.raceCircuits.add(raceCircuit);
+		}
+
 		return raceCircuit.raceHorses.addAll(raceHorseList);
 	}
 
