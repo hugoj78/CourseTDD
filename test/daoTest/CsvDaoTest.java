@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import dao.CsvDao;
 import model.Data;
 
-class csvDaoTest {
+class CsvDaoTest {
 
 	CsvDao csvDao = new CsvDao();
 

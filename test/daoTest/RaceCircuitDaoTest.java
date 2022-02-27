@@ -107,13 +107,31 @@ public class RaceCircuitDaoTest {
 	}
 
 	@Test
-	void addRaceHorseToRaceCircuitTestKO() {
+	void addRaceHorseToRaceCircuitLessThanWantedTestKO() {
 		// GIVEN
 		RaceCircuit raceCircuit = new RaceCircuit();
 
 		List<RaceHorse> raceHorseList = new ArrayList<>();
 
 		for (int i = 0; i < 5; i++) {
+			raceHorseList.add(new RaceHorse());
+		}
+
+		// WHEN
+		boolean result = raceCircuitDao.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
+
+		// THEN
+		assertFalse(result);
+	}
+
+	@Test
+	void addRaceHorseToRaceCircuitMoreThanWantedTestKO() {
+		// GIVEN
+		RaceCircuit raceCircuit = new RaceCircuit();
+
+		List<RaceHorse> raceHorseList = new ArrayList<>();
+
+		for (int i = 0; i < 7; i++) {
 			raceHorseList.add(new RaceHorse());
 		}
 
