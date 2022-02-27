@@ -38,4 +38,14 @@ public class Utility {
 		}
 	}
 
+	public static void displayAllRaceHorseByNameWithOutSpecialListOfHorse(List<RaceHorse> raceHorseList) {
+		List<RaceHorse> allRaceHorses = raceHorseController.getAllRaceHorses();
+		for (int i = 0; i < allRaceHorses.size(); i++) {
+			if (!raceHorseList.contains(allRaceHorses.get(i))) {
+				System.out.println("Name : " + allRaceHorses.get(i).name);
+			}
+		}
+
+	}
+
 }

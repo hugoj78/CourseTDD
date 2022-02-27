@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.RaceCircuitController;
 import controller.RaceHorseController;
 import controller.RaceTrackController;
@@ -13,6 +16,10 @@ public class Menu {
 	RaceTrackController raceTrackController = new RaceTrackController();
 	RaceCircuitController raceCircuitController = new RaceCircuitController();
 	RaceHorseController raceHorseController = new RaceHorseController();
+
+	// Init Variable
+	RaceHorse raceHorse;
+	RaceCircuit raceCircuit;
 
 	public void welcome() {
 		System.out.println("Welcome to our Awe - wait for it - some Application\n");
@@ -75,9 +82,8 @@ public class Menu {
 				break;
 			case "2":
 				System.out.println("\t=== Update Race Circuit Name ===");
-				Utility.displayAllRaceCircuitByName();
 				System.out.println("\nType the name of the Circuit you want to update : ");
-				RaceCircuit raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
+				raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
 				if (raceCircuit != null) {
 					System.out.println("\nType the new name for the Circuit : ");
 					raceCircuitController.updateRaceCircuitName(raceCircuit, Utility.userInputString());
@@ -90,12 +96,55 @@ public class Menu {
 				break;
 			case "3":
 				System.out.println("\t=== Delete Race Circuit ===");
+				Utility.displayAllRaceCircuitByName();
+				System.out.println("\nType the name of the Circuit you want to delete : ");
+				raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
+				if (raceCircuit != null) {
+					if (raceCircuitController.deleteRaceCircuit(raceCircuit)) {
+						System.out.println("Race Circuit succesfully deleted");
+					} else {
+						System.out.println("The Race Circuit could not be deleted");
+					}
+
+				} else {
+					System.out.println("There is no RaceCircuit with this name");
+				}
 				System.out.println("\n");
 
 				break;
 
 			case "4":
 				System.out.println("\t=== Add Horse to Race Circuit ===");
+				if (raceCircuitController.getAllRaceCircuits().isEmpty()) {
+					System.out.println("There is not RaceCircuit");
+				} else if (raceHorseController.getAllRaceHorses().size() < 6) {
+					System.out.println("There is not enough Horses");
+				} else {
+					Utility.displayAllRaceCircuitByName();
+					System.out.println("\nType the name of the Circuit you want : ");
+					raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
+
+					if (!raceCircuit.getRaceHorses().isEmpty()) {
+						System.out.println("This Race Course already got Horses");
+					} else if (raceCircuit != null) {
+						List<RaceHorse> raceHorseList = new ArrayList<>();
+						int count = 0;
+						while (count < 6) {
+							Utility.displayAllRaceHorseByNameWithOutSpecialListOfHorse(raceHorseList);
+							System.out.println("Type name of a Horse to add to this Race Circuit : ");
+
+							raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
+							if (raceHorse != null) {
+								raceHorseList.add(raceHorse);
+								count++;
+							}
+						}
+						raceCircuitController.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
+					} else {
+						System.out.println("There is no RaceCircuit with this name");
+					}
+
+				}
 				System.out.println("\n");
 
 				break;
@@ -110,6 +159,7 @@ public class Menu {
 			System.out.println("\t1 - Create Race Horse");
 			System.out.println("\t2 - Update Race Horse Name");
 			System.out.println("\t3 - Delete Race Horse");
+			System.out.println("\t4 - Create 6 Horses for test (de rien)");
 
 			switch (Utility.userInputString()) {
 			case "1":
@@ -123,11 +173,10 @@ public class Menu {
 				System.out.println("\t=== Update Race Horse Name ===");
 				Utility.displayAllRaceHorseByName();
 				System.out.println("\nType the name of the Horse you want to update : ");
-				RaceHorse raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
+				raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
 				if (raceHorse != null) {
 					System.out.println("\nType the new name for the Horse : ");
 					raceHorseController.updateRaceHorseName(raceHorse, Utility.userInputString());
-
 				} else {
 					System.out.println("There is no RaceHorse with this name");
 				}
@@ -136,7 +185,26 @@ public class Menu {
 				break;
 			case "3":
 				System.out.println("\t=== Delete Race Horse ===");
+				Utility.displayAllRaceHorseByName();
+				System.out.println("\nType the name of the Horse you want to delete : ");
+				raceHorse = raceHorseController.getFirstRaceHorseByName(Utility.userInputString());
+				if (raceHorse != null) {
+					if (raceHorseController.deleteRaceHorse(raceHorse)) {
+						System.out.println("RaceHorse succesfully deleted");
+					} else {
+						System.out.println("The RaceHorse could not be deleted");
+					}
+				} else {
+					System.out.println("There is no RaceHorse with this name");
+				}
 				System.out.println("\n");
+
+				break;
+			case "4":
+				System.out.println("\t=== Create 6 Race Horses for test ===");
+				for (int i = 0; i < 6; i++) {
+					raceHorseController.createRaceHorse("Horse" + i);
+				}
 
 				break;
 
