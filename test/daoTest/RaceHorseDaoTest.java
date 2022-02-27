@@ -30,7 +30,7 @@ class RaceHorseDaoTest {
 		// GIVEN
 
 		// WHEN
-		List<RaceHorseDao> result = raceHorseDao.getAllRaceHorse();
+		List<RaceHorse> result = raceHorseDao.getAllRaceHorse();
 
 		// THEN
 		assertNotNull(result);

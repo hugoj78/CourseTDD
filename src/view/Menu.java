@@ -36,12 +36,15 @@ public class Menu {
 
 			break;
 		case "2":
+			System.out.println("=== All Race Circuit ===");
 
 			break;
 		case "3":
+			System.out.println("=== All Race Horse ===");
 
 			break;
 		case "4":
+			System.out.println("=== Ten Last Result ===");
 
 			break;
 		case "5":
@@ -97,6 +100,7 @@ public class Menu {
 
 			break;
 		case "7":
+			System.out.println("=== Start a Race ===");
 
 			break;
 

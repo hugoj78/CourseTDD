@@ -2,28 +2,25 @@ package dao;
 
 import java.util.List;
 
+import model.Data;
 import model.RaceHorse;
 
 public class RaceHorseDao {
 
-	public List<RaceHorseDao> getAllRaceHorse() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RaceHorse> getAllRaceHorse() {
+		return Data.getRaceTrack().raceHorses;
 	}
 
 	public boolean createRaceHorse(String horseName) {
-		// TODO Auto-generated method stub
-		return false;
+		return Data.getRaceTrack().raceHorses.add(new RaceHorse(horseName));
 	}
 
 	public void updateRaceHorseName(RaceHorse raceHorse, String newHorseName) {
-		// TODO Auto-generated method stub
-
+		raceHorse.setName(newHorseName);
 	}
 
 	public boolean deleteRaceHorse(RaceHorse raceHorse) {
-		// TODO Auto-generated method stub
-		return false;
+		return Data.getRaceTrack().raceHorses.remove(raceHorse);
 	}
 
 }
