@@ -8,16 +8,15 @@ public class RaceHorseController {
 	RaceHorseDao raceHorseDao = new RaceHorseDao();
 
 	public void createRaceHorse(String nameHorse) {
-		// raceHorseDao.createRaceHorse(nameHorse);
+		raceHorseDao.createRaceHorse(nameHorse);
 	}
 
-	public void updateRaceHorseName(String newNameHorse) {
-		// TODO Auto-generated method stub
-
+	public void updateRaceHorseName(RaceHorse raceHorse, String newNameHorse) {
+		raceHorseDao.updateRaceHorseName(raceHorse, newNameHorse);
 	}
 
 	public boolean deleteRaceHorse(RaceHorse raceHorse) {
-		return false;
+		return raceHorseDao.deleteRaceHorse(raceHorse);
 	}
 
 }

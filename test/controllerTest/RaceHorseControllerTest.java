@@ -41,10 +41,11 @@ class RaceHorseControllerTest {
 	public void updateNameRaceHorseTestOK() {
 		// GIVEN
 		String newNameHorse = "Pablito";
-		Data.getRaceTrack().raceHorses.add(new RaceHorse("ImNotPablito"));
+		RaceHorse raceHorse = new RaceHorse("ImNotPablito");
+		Data.getRaceTrack().raceHorses.add(raceHorse);
 
 		// WHEN
-		raceHorseController.updateRaceHorseName(newNameHorse);
+		raceHorseController.updateRaceHorseName(raceHorse, newNameHorse);
 
 		// THEN
 		int nbrRaceHorse = Data.getRaceTrack().raceHorses.size();
