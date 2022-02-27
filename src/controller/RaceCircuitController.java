@@ -31,4 +31,8 @@ public class RaceCircuitController {
 		return raceCircuitDao.addRaceHorseToRaceCircuit(raceCircuit, raceHorseList);
 	}
 
+	public RaceCircuit getFirstRaceCircuitByName(String raceCircuitName) {
+		return raceCircuitDao.getFirstRaceCircuitByName(raceCircuitName);
+	}
+
 }

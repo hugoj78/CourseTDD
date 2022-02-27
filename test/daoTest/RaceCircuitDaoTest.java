@@ -2,6 +2,7 @@ package daoTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import dao.RaceCircuitDao;
 import dao.RaceTrackDao;
+import model.Data;
 import model.RaceCircuit;
 import model.RaceHorse;
 
@@ -144,5 +146,31 @@ public class RaceCircuitDaoTest {
 
 		// THEN
 		assertFalse(result);
+	}
+
+	@Test
+	void getFirstRaceCircuitByNameTestOk() {
+		// GIVEN
+		String raceCircuitName = "OualalaCestChaud";
+		Data.getRaceTrack().raceCircuits.add(new RaceCircuit(raceCircuitName));
+
+		// WHEN
+		RaceCircuit result = raceCircuitDao.getFirstRaceCircuitByName(raceCircuitName);
+
+		// THEN
+		assertNotNull(result);
+		assertEquals(raceCircuitName, result.name);
+	}
+
+	@Test
+	void getFirstRaceCircuitDoesntExistByNameTestKo() {
+		// GIVEN
+		String raceCircuitName = "OualalaCestChaud";
+
+		// WHEN
+		RaceCircuit result = raceCircuitDao.getFirstRaceCircuitByName(raceCircuitName);
+
+		// THEN
+		assertNull(result);
 	}
 }

@@ -36,4 +36,16 @@ public class RaceCircuitDao {
 		return raceCircuit.raceHorses.addAll(raceHorseList);
 	}
 
+	public RaceCircuit getFirstRaceCircuitByName(String raceCircuitName) {
+
+		List<RaceCircuit> raceCircuits = Data.getRaceTrack().raceCircuits;
+		for (int i = 0; i < raceCircuits.size(); i++) {
+			if (raceCircuits.get(i).name.equals(raceCircuitName)) {
+				return raceCircuits.get(i);
+			}
+		}
+
+		return null;
+	}
+
 }

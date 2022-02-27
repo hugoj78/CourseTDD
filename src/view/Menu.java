@@ -3,6 +3,7 @@ package view;
 import controller.RaceCircuitController;
 import controller.RaceHorseController;
 import controller.RaceTrackController;
+import model.RaceCircuit;
 import utils.Utility;
 
 public class Menu {
@@ -73,6 +74,16 @@ public class Menu {
 				break;
 			case "2":
 				System.out.println("\t=== Update Race Circuit Name ===");
+				Utility.displayAllRaceCircuitByName();
+				System.out.println("\nType the name of the Circuit you want to update : ");
+				RaceCircuit raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
+				if (raceCircuit != null) {
+					System.out.println("\nType the new name for the Circuit : ");
+					raceCircuitController.updateRaceCircuitName(raceCircuit, Utility.userInputString());
+
+				} else {
+					System.out.println("There is no RaceCircuit with this name");
+				}
 				System.out.println("\n");
 
 				break;
