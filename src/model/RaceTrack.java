@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RaceTrack {
@@ -10,6 +11,8 @@ public class RaceTrack {
 
 	public RaceTrack(String name) {
 		this.name = name;
+		this.raceHorses = new ArrayList<>();
+		this.raceCircuits = new ArrayList<>();
 	}
 
 	public String getName() {

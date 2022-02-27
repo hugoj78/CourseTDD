@@ -2,32 +2,33 @@ package dao;
 
 import java.util.List;
 
+import model.Data;
 import model.RaceCircuit;
 import model.RaceHorse;
 
 public class RaceCircuitDao {
 
 	public boolean createRaceCircuit(String circuitName) {
-		return false;
+		return Data.getRaceTrack().raceCircuits.add(new RaceCircuit(circuitName));
 	}
 
 	public List<RaceCircuit> getAllRaceCircuit() {
-		return null;
+		return Data.getRaceTrack().raceCircuits;
 	}
 
-	public boolean updateRaceCircuitName(RaceCircuit raceCircuit, String newCircuitName) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateRaceCircuitName(RaceCircuit raceCircuit, String newCircuitName) {
+		raceCircuit.setName(newCircuitName);
 	}
 
 	public boolean deleteRaceCircuit(RaceCircuit raceCircuit) {
-		// TODO Auto-generated method stub
-		return false;
+		return Data.getRaceTrack().raceCircuits.remove(raceCircuit);
 	}
 
 	public boolean addRaceHorseToRaceCircuit(RaceCircuit raceCircuit, List<RaceHorse> raceHorseList) {
-		// TODO Auto-generated method stub
-		return false;
+		if (raceHorseList.size() != 6) {
+			return false;
+		}
+		return raceCircuit.raceHorses.addAll(raceHorseList);
 	}
 
 }

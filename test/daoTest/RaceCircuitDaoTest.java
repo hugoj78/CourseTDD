@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +12,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dao.RaceCircuitDao;
+import dao.RaceTrackDao;
 import model.RaceCircuit;
 import model.RaceHorse;
 
 public class RaceCircuitDaoTest {
 
 	RaceCircuitDao raceCircuitDao;
+	RaceTrackDao raceTrackDao;
 
 	@BeforeEach
 	void init() {
+		raceTrackDao = new RaceTrackDao();
 		raceCircuitDao = new RaceCircuitDao();
 	}
 
@@ -49,49 +51,23 @@ public class RaceCircuitDaoTest {
 	}
 
 	@Test
-	void createRaceCircuitTestKO() {
-		// GIVEN
-		String circuitName = "Penish";
-
-		// WHEN
-		boolean result = raceCircuitDao.createRaceCircuit(circuitName);
-
-		// THEN
-		assertFalse(result);
-	}
-
-	@Test
 	void updateRaceCircuitTestOK() {
 		// GIVEN
 		String newCircuitName = "Penish";
 		RaceCircuit raceCircuit = new RaceCircuit();
 
 		// WHEN
-		boolean result = raceCircuitDao.updateRaceCircuitName(raceCircuit, newCircuitName);
+		raceCircuitDao.updateRaceCircuitName(raceCircuit, newCircuitName);
 
 		// THEN
-		assertTrue(result);
 		assertEquals(newCircuitName, raceCircuit.name);
-	}
-
-	@Test
-	void updateRaceCircuitTestKO() {
-		// GIVEN
-		String newCircuitName = "Pablicito";
-		RaceCircuit raceCircuit = new RaceCircuit();
-
-		// WHEN
-		boolean result = raceCircuitDao.updateRaceCircuitName(raceCircuit, newCircuitName);
-
-		// THEN
-		assertFalse(result);
-		assertNotEquals(newCircuitName, raceCircuit.name);
 	}
 
 	@Test
 	void deleteRaceCircuitTestOK() {
 		// GIVEN
 		RaceCircuit raceCircuit = new RaceCircuit();
+		raceTrackDao.raceTrack.raceCircuits.add(raceCircuit);
 
 		// WHEN
 		boolean result = raceCircuitDao.deleteRaceCircuit(raceCircuit);
@@ -137,7 +113,7 @@ public class RaceCircuitDaoTest {
 
 		List<RaceHorse> raceHorseList = new ArrayList<>();
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			raceHorseList.add(new RaceHorse());
 		}
 

@@ -5,10 +5,9 @@ import model.RaceTrack;
 
 public class RaceTrackDao {
 
-	RaceTrack raceTrack = new RaceTrack("Leibinou Stadium");
+	public RaceTrack raceTrack = new RaceTrack("Leibinou Stadium");
 
 	public RaceTrackDao() {
-
 		Data.setRaceTrack(raceTrack);
 	}
 
