@@ -9,14 +9,17 @@ public class RaceCircuit {
 	public String name;
 	public Date dateLastCourse;
 	public List<RaceHorse> raceHorses;
+	public RaceHorse raceHorseWinner;
 
 	public RaceCircuit() {
 		raceHorses = new ArrayList<>();
+		raceHorseWinner = new RaceHorse();
 	}
 
 	public RaceCircuit(String circuitName) {
 		this.name = circuitName;
 		this.raceHorses = new ArrayList<>();
+		this.raceHorseWinner = new RaceHorse();
 	}
 
 	public String getName() {
@@ -41,6 +44,14 @@ public class RaceCircuit {
 
 	public void setRaceHorses(List<RaceHorse> raceHorses) {
 		this.raceHorses = raceHorses;
+	}
+
+	public RaceHorse getRaceHorseWinner() {
+		return raceHorseWinner;
+	}
+
+	public void setRaceHorseWinner(RaceHorse raceHorseWinner) {
+		this.raceHorseWinner = raceHorseWinner;
 	}
 
 }

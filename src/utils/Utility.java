@@ -2,6 +2,7 @@ package utils;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import controller.RaceCircuitController;
 import controller.RaceHorseController;
@@ -45,6 +46,11 @@ public class Utility {
 				System.out.println("Name : " + allRaceHorses.get(i).name);
 			}
 		}
+
+	}
+
+	public static int randomInt(int min, int max) {
+		return ThreadLocalRandom.current().nextInt(min, max + 1);
 
 	}
 

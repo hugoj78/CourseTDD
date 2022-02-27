@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import controller.RaceCircuitController;
@@ -216,6 +217,22 @@ public class Menu {
 			break;
 		case "7":
 			System.out.println("=== Start a Race ===");
+			Utility.displayAllRaceCircuitByName();
+			System.out.println("\nType the name of the Circuit you want to race : ");
+			raceCircuit = raceCircuitController.getFirstRaceCircuitByName(Utility.userInputString());
+			if (raceCircuit.raceHorses.size() != 6) {
+				System.out.println("This RaceCircuit could not start a race");
+			} else if (raceCircuit != null) {
+				int whoWinRandom = Utility.randomInt(1, 6);
+				RaceHorse raceHorseWhoWin = raceCircuit.raceHorses.get(whoWinRandom - 1);
+				raceCircuit.setRaceHorseWinner(raceHorseWhoWin);
+				raceCircuit.setDateLastCourse(new Date());
+
+				System.out.println("The winner of the Race Circuit " + raceCircuit.name + " is the Horse "
+						+ raceHorseWhoWin.name + " the " + raceCircuit.dateLastCourse.toString());
+			} else {
+				System.out.println("There is no RaceCircuit with this name");
+			}
 
 			break;
 
