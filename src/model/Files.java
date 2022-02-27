@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Files {
@@ -8,7 +7,7 @@ public class Files {
 	public String path;
 	public String extention;
 	public List<String> firstline;
-	public List<ArrayList<String>> data;
+	public List<List<String>> data;
 
 	public String getName() {
 		return name;
@@ -29,6 +28,15 @@ public class Files {
 		this.firstline = firstline;
 	}
 
+	public Files(String name, String path, String extention, List<String> firstline, List<List<String>> data) {
+		super();
+		this.name = name;
+		this.path = path;
+		this.extention = extention;
+		this.firstline = firstline;
+		this.data = data;
+	}
+
 	public String getExtention() {
 		return extention;
 	}
@@ -45,11 +53,11 @@ public class Files {
 		this.firstline = firstline;
 	}
 
-	public List<ArrayList<String>> getData() {
+	public List<List<String>> getData() {
 		return data;
 	}
 
-	public void setData(List<ArrayList<String>> data) {
+	public void setData(List<List<String>> data) {
 		this.data = data;
 	}
 

@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import dao.CsvDao;
-import model.Data;
 import model.Files;
 
 class CsvDaoTest {
 
 	CsvDao csvDao = new CsvDao();
-	List<String> firstline = new ArrayList<String>();;
+	List<String> firstline = new ArrayList<String>();
 
 	@Test
 	public void findcsvWithPathFileAndExtentionTest() {
@@ -159,30 +159,43 @@ class CsvDaoTest {
 	}
 
 	@Test
-	public void addAllDataOnCsv() {
+	public void addDataOnCsvTest() {
 
-		// given
-		String path = "../ressource";
-		String file = "bdd_test.csv";
+		String path = "./src/ressources";
+		String file = "test";
+		String extention = "csv";
+		firstline.add("Prenom");
+		firstline.add("Nom");
+		firstline.add("langage");
+		List<List<String>> rows = Arrays.asList(Arrays.asList("Jean", "Ragueneau", "no"),
+				Arrays.asList("Hugo", "Egu", "java"), Arrays.asList("Adrien", "leib", "python"));
+
+		Files f = new Files(file, path, extention, firstline, rows);
 
 		// RaceTrack t = new RaceTrack();
 		// Data.getRaceTrack().add(t);
 
-		assertTrue(csvDao.updateAllData(Data.getRaceTrack(), path, file));
+		assertTrue(csvDao.updateCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline(), f.getData()));
 
 	}
 
 	@Test
 	public void addAllNullDataOnCsv() {
-
 		// given
-		String path = "../ressource";
-		String file = "bdd_test.csv";
+		String path = "./src/ressources";
+		String file = "test";
+		String extention = "csv";
+		firstline.add("Prenom");
+		firstline.add("Nom");
+		firstline.add("langage");
+		List<List<String>> rows = null;
+
+		Files f = new Files(file, path, extention, firstline, rows);
 
 		// RaceTrack t = new RaceTrack();
 		// Data.getRaceTrack().add(t);
 
-		assertFalse(csvDao.updateAllData(null, path, file));
+		assertFalse(csvDao.updateCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline(), f.getData()));
 
 	}
 
