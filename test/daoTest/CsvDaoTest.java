@@ -137,24 +137,29 @@ class CsvDaoTest {
 	}
 
 	@Test
-	public void readCsv() {
+	public void readCsvTest() {
 
-		String path = "../ressource";
-		String file = null;
+		String path = "./src/ressources";
+		String file = "test";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
 
 		// when
-		assertNotNull(csvDao.getDataOnCsv(path, file));
+
+		assertNotNull(csvDao.getDataOnCsv(f.getPath(), f.getName(), f.getExtention()));
 
 	}
 
 	@Test
-	public void readcsvWhenNullData() {
+	public void readCsvWhenFileNullTest() {
 
-		String path = "../ressource";
+		String path = "./src/ressources";
 		String file = null;
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
 
 		// when
-		assertNotNull(csvDao.getDataOnCsv(path, file));
+		assertNotNull(csvDao.getDataOnCsv(file, path, extention));
 
 	}
 
