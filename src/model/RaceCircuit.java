@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RaceCircuit {
+public class RaceCircuit implements Comparable<RaceCircuit> {
 
 	public String name;
 	public Date dateLastCourse;
@@ -52,6 +52,18 @@ public class RaceCircuit {
 
 	public void setRaceHorseWinner(RaceHorse raceHorseWinner) {
 		this.raceHorseWinner = raceHorseWinner;
+	}
+
+	public RaceCircuit(String name, Date dateLastCourse, RaceHorse raceHorseWinner) {
+		this.name = name;
+		this.dateLastCourse = dateLastCourse;
+		this.raceHorseWinner = raceHorseWinner;
+	}
+
+	@Override
+	public int compareTo(RaceCircuit circuit) {
+		return this.dateLastCourse.compareTo(circuit.dateLastCourse);
+		// return (this.dateLastCourse - circ.dateLastCourse);
 	}
 
 }

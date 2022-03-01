@@ -24,12 +24,12 @@ public class CsvDao {
 	}
 
 	public List<List<String>> getDataOnCsv(String path, String file, String extention) {
-		List<List<String>> records = new ArrayList<>();
-		try (BufferedReader br = new BufferedReader(new FileReader(path + '/' + file + '.' + extention))) {
+		List<List<String>> data = new ArrayList<>();
+		try (BufferedReader csvReader = new BufferedReader(new FileReader(path + '/' + file + '.' + extention))) {
 			String line;
-			while ((line = br.readLine()) != null) {
-				String[] values = line.split(";");
-				records.add(Arrays.asList(values));
+			while ((line = csvReader.readLine()) != null) {
+				String[] linesplit = line.split(";");
+				data.add(Arrays.asList(linesplit));
 			}
 
 		} catch (FileNotFoundException e) {
@@ -39,7 +39,7 @@ public class CsvDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return records;
+		return data;
 	}
 
 	public boolean updateCsv(String path, String file, String extention, List<String> firstline,
@@ -55,9 +55,9 @@ public class CsvDao {
 				FileWriter csvWriter = new FileWriter(path + '/' + file + '.' + extention);
 				csvWriter.append(String.join(";", firstline));
 				csvWriter.append("\n");
-				for (List<String> rowData : rows) {
+				for (List<String> row : rows) {
 
-					csvWriter.append(String.join(";", rowData));
+					csvWriter.append(String.join(";", row));
 					csvWriter.append("\n");
 				}
 				csvWriter.flush();

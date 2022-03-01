@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -144,7 +145,13 @@ class CsvDaoTest {
 		String extention = "csv";
 		Files f = new Files(file, path, extention);
 
-		// when
+		// when Date date = new Date();
+
+		// display time and date using toString()
+		Date date = new Date();
+
+		// display time and date using toString()
+		System.out.println(date.toString());
 
 		assertNotNull(csvDao.getDataOnCsv(f.getPath(), f.getName(), f.getExtention()));
 
