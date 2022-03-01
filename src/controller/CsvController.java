@@ -22,7 +22,7 @@ public class CsvController {
 
 	public ArrayList<RaceCircuit> getLastTenDataRaceCircuit(Files file) {
 		// TODO Auto-generated method stub
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 		List<List<String>> circuit = csvDao.getDataOnCsv(file.path, file.name, file.extention);
 		System.out.println(circuit);
 		circuit.remove(0);
@@ -32,7 +32,7 @@ public class CsvController {
 
 		System.out.println(d);
 
-		ArrayList<RaceCircuit> arraylist = new ArrayList<RaceCircuit>();
+		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
 
 		for (int i = 0; i < circuit.size(); i++) {
 			String name = circuit.get(i).get(0).toString();
@@ -40,7 +40,9 @@ public class CsvController {
 			Date date = null;
 			try {
 				System.out.println(circuit.get(i).get(1));
-				date = formatter.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
+				date = formatDate.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
+
+				// System.out.println(formatter.format(date));
 
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -48,15 +50,15 @@ public class CsvController {
 			}
 			RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2));
 
-			arraylist.add(new RaceCircuit(name, date, besthorse));
+			arrayCircuit.add(new RaceCircuit(name, date, besthorse));
 		}
 
-		System.out.println(arraylist);
-		Collections.sort(arraylist);
+		System.out.println(arrayCircuit);
+		Collections.sort(arrayCircuit);
 
-		System.out.println(arraylist);
+		System.out.println(arrayCircuit);
 
-		return arraylist;
+		return arrayCircuit;
 	}
 
 }
