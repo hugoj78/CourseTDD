@@ -141,14 +141,6 @@ class CsvControllerTest {
 
 		ArrayList<RaceCircuit> tenLastCircuit = csvController.getTenLastCircuit(arrayCircuit);
 
-		System.out.println(trueTenLastArrayCircuit);
-
-		System.out.println("------");
-
-		System.out.println(tenLastCircuit);
-
-		System.out.println("------");
-
 		assertEquals(trueTenLastArrayCircuit, tenLastCircuit);
 
 	}
