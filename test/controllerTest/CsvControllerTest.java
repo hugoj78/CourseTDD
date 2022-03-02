@@ -115,29 +115,29 @@ class CsvControllerTest {
 		RaceCircuit c11 = new RaceCircuit("ImNotPablito", d11, h1);
 
 		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
-		arrayCircuit.add(c11);
+		arrayCircuit.add(c1);
 		arrayCircuit.add(c2);
 		arrayCircuit.add(c3);
 		arrayCircuit.add(c4);
 		arrayCircuit.add(c5);
-		arrayCircuit.add(c10);
+		arrayCircuit.add(c6);
 		arrayCircuit.add(c7);
 		arrayCircuit.add(c8);
 		arrayCircuit.add(c9);
-		arrayCircuit.add(c8);
+		arrayCircuit.add(c10);
 		arrayCircuit.add(c11);
 
 		ArrayList<RaceCircuit> trueTenLastArrayCircuit = new ArrayList<RaceCircuit>();
-		trueTenLastArrayCircuit.add(c1);
-		trueTenLastArrayCircuit.add(c2);
-		trueTenLastArrayCircuit.add(c3);
-		trueTenLastArrayCircuit.add(c4);
-		trueTenLastArrayCircuit.add(c5);
-		trueTenLastArrayCircuit.add(c6);
-		trueTenLastArrayCircuit.add(c7);
-		trueTenLastArrayCircuit.add(c8);
-		trueTenLastArrayCircuit.add(c9);
+		trueTenLastArrayCircuit.add(c11);
 		trueTenLastArrayCircuit.add(c10);
+		trueTenLastArrayCircuit.add(c9);
+		trueTenLastArrayCircuit.add(c8);
+		trueTenLastArrayCircuit.add(c7);
+		trueTenLastArrayCircuit.add(c6);
+		trueTenLastArrayCircuit.add(c5);
+		trueTenLastArrayCircuit.add(c4);
+		trueTenLastArrayCircuit.add(c3);
+		trueTenLastArrayCircuit.add(c2);
 
 		ArrayList<RaceCircuit> tenLastCircuit = csvController.getTenLastCircuit(arrayCircuit);
 
@@ -146,6 +146,9 @@ class CsvControllerTest {
 		System.out.println("------");
 
 		System.out.println(tenLastCircuit);
+
+		System.out.println("------");
+
 		assertEquals(trueTenLastArrayCircuit, tenLastCircuit);
 
 	}
