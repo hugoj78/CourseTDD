@@ -28,7 +28,8 @@ public class CsvController {
 			try {
 				String name = circuit.get(i).get(0).toString();
 				Date date = formatDate.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
-				RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2));
+				// TODO CHANGER AGE
+				RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2), 0);
 				arrayCircuit.add(new RaceCircuit(name, date, besthorse));
 
 			} catch (ParseException e) {

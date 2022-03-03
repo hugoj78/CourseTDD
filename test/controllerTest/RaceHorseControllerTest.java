@@ -31,19 +31,20 @@ class RaceHorseControllerTest {
 		String nameHorse = "Pablito";
 
 		// WHEN
-		raceHorseController.createRaceHorse(nameHorse);
+		raceHorseController.createRaceHorse(nameHorse, 42);
 
 		// THEN
 		int nbrRaceHorse = Data.getRaceTrack().raceHorses.size();
 		assertEquals(1, nbrRaceHorse);
 		assertEquals(nameHorse, Data.getRaceTrack().raceHorses.get(nbrRaceHorse - 1).name);
+		assertEquals(42, Data.getRaceTrack().raceHorses.get(nbrRaceHorse - 1).age);
 	}
 
 	@Test
 	public void updateNameRaceHorseTestOK() {
 		// GIVEN
 		String newNameHorse = "Pablito";
-		RaceHorse raceHorse = new RaceHorse("ImNotPablito");
+		RaceHorse raceHorse = new RaceHorse("ImNotPablito", 10);
 		Data.getRaceTrack().raceHorses.add(raceHorse);
 
 		// WHEN
@@ -53,12 +54,13 @@ class RaceHorseControllerTest {
 		int nbrRaceHorse = Data.getRaceTrack().raceHorses.size();
 		assertEquals(1, nbrRaceHorse);
 		assertEquals(newNameHorse, Data.getRaceTrack().raceHorses.get(nbrRaceHorse - 1).name);
+		assertEquals(10, Data.getRaceTrack().raceHorses.get(nbrRaceHorse - 1).age);
 	}
 
 	@Test
 	public void deleteRaceHorseTestOK() {
 		// GIVEN
-		RaceHorse raceHorse = new RaceHorse("Chupapi");
+		RaceHorse raceHorse = new RaceHorse("Chupapi", 11);
 		Data.getRaceTrack().raceHorses.add(raceHorse);
 
 		// WHEN
@@ -73,7 +75,7 @@ class RaceHorseControllerTest {
 	@Test
 	public void deleteRaceHorseNonExistantTestKO() {
 		// GIVEN
-		RaceHorse raceHorse = new RaceHorse("Chupapi");
+		RaceHorse raceHorse = new RaceHorse("Chupapi", 12);
 
 		// WHEN
 		boolean result = raceHorseController.deleteRaceHorse(raceHorse);
@@ -88,7 +90,7 @@ class RaceHorseControllerTest {
 	public void getFirstRaceHorseByNameOK() {
 		// GIVEN
 		String raceHorseName = "Mamacita";
-		RaceHorse raceHorse = new RaceHorse(raceHorseName);
+		RaceHorse raceHorse = new RaceHorse(raceHorseName, 14);
 		Data.getRaceTrack().raceHorses.add(raceHorse);
 
 		// WHEN
@@ -97,6 +99,7 @@ class RaceHorseControllerTest {
 		// THEN
 		assertNotNull(result);
 		assertEquals(raceHorseName, result.name);
+		assertEquals(14, result.age);
 	}
 
 	@Test

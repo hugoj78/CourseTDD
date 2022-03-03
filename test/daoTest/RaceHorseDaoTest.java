@@ -44,7 +44,7 @@ class RaceHorseDaoTest {
 		String horseName = "PetitFloconDeNeige";
 
 		// WHEN
-		boolean result = raceHorseDao.createRaceHorse(horseName);
+		boolean result = raceHorseDao.createRaceHorse(horseName, 666);
 
 		// THEN
 		assertTrue(result);
@@ -92,7 +92,7 @@ class RaceHorseDaoTest {
 	void getFirstRaceHorseByNameTestOk() {
 		// GIVEN
 		String raceHorseName = "OualalaCestChaud";
-		Data.getRaceTrack().raceHorses.add(new RaceHorse(raceHorseName));
+		Data.getRaceTrack().raceHorses.add(new RaceHorse(raceHorseName, 10));
 
 		// WHEN
 		RaceHorse result = raceHorseDao.getFirstRaceHorseByName(raceHorseName);
@@ -100,6 +100,7 @@ class RaceHorseDaoTest {
 		// THEN
 		assertNotNull(result);
 		assertEquals(raceHorseName, result.name);
+		assertEquals(10, result.age);
 	}
 
 	@Test

@@ -14,8 +14,8 @@ public class RaceHorseController {
 		return Data.getRaceTrack().raceHorses;
 	}
 
-	public void createRaceHorse(String nameHorse) {
-		raceHorseDao.createRaceHorse(nameHorse);
+	public void createRaceHorse(String nameHorse, int ageHorse) {
+		raceHorseDao.createRaceHorse(nameHorse, ageHorse);
 	}
 
 	public void updateRaceHorseName(RaceHorse raceHorse, String newNameHorse) {

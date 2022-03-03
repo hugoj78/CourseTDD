@@ -166,7 +166,10 @@ public class Menu {
 			case "1":
 				System.out.println("\t=== Create Race Horse ===");
 				System.out.println("\nType the name of your new Race Horse :");
-				raceHorseController.createRaceHorse(Utility.userInputString());
+				String nameHorse = Utility.userInputString();
+				System.out.println("\nType the age of your new Race Horse :");
+				int ageHorse = Utility.userInputInt();
+				raceHorseController.createRaceHorse(nameHorse, ageHorse);
 				System.out.println("\n");
 
 				break;
@@ -204,7 +207,7 @@ public class Menu {
 			case "4":
 				System.out.println("\t=== Create 6 Race Horses for test ===");
 				for (int i = 0; i < 6; i++) {
-					raceHorseController.createRaceHorse("Horse" + i);
+					raceHorseController.createRaceHorse("Horse" + i, 8);
 				}
 
 				break;

@@ -11,8 +11,8 @@ public class RaceHorseDao {
 		return Data.getRaceTrack().raceHorses;
 	}
 
-	public boolean createRaceHorse(String horseName) {
-		return Data.getRaceTrack().raceHorses.add(new RaceHorse(horseName));
+	public boolean createRaceHorse(String horseName, int age) {
+		return Data.getRaceTrack().raceHorses.add(new RaceHorse(horseName, age));
 	}
 
 	public void updateRaceHorseName(RaceHorse raceHorse, String newHorseName) {

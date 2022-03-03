@@ -31,7 +31,7 @@ class CsvControllerTest {
 
 	@Test
 	public void getLastTenDataRaceCircuitSizeTest() {
-		RaceHorse h1 = new RaceHorse("Toto");
+		RaceHorse h1 = new RaceHorse("Toto", 22);
 		Date d1 = new Date();
 		RaceCircuit c1 = new RaceCircuit("ImNotPablito", d1, h1);
 		RaceCircuit c2 = new RaceCircuit("ImNotPablito", d1, h1);
@@ -66,7 +66,7 @@ class CsvControllerTest {
 
 	@Test
 	public void getLastTenDataRaceCircuitSizWhenRaceCircuitHasNotTenRaceTest() {
-		RaceHorse h1 = new RaceHorse("Toto");
+		RaceHorse h1 = new RaceHorse("Toto", 22);
 		Date d1 = new Date();
 		RaceCircuit c1 = new RaceCircuit("ImNotPablito", d1, h1);
 		RaceCircuit c2 = new RaceCircuit("ImNotPablito", d1, h1);
@@ -89,7 +89,7 @@ class CsvControllerTest {
 
 	@Test
 	public void getTenLastDataRaceCircuitLogicalTest() {
-		RaceHorse h1 = new RaceHorse("Toto");
+		RaceHorse h1 = new RaceHorse("Toto", 23);
 		Date d1 = new Date();
 		Date d2 = new Date();
 		Date d3 = new Date();
