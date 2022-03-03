@@ -35,7 +35,8 @@ public class Utility {
 	public static void displayAllRaceHorseByName() {
 		List<RaceHorse> allRaceHorses = raceHorseController.getAllRaceHorses();
 		for (int i = 0; i < allRaceHorses.size(); i++) {
-			System.out.println("Name : " + allRaceHorses.get(i).name);
+			System.out.println(
+					"Name : " + allRaceHorses.get(i).name + " - number of Win : " + allRaceHorses.get(i).nbrOfWin);
 		}
 	}
 

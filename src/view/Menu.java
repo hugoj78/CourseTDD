@@ -230,7 +230,7 @@ public class Menu {
 				RaceHorse raceHorseWhoWin = raceCircuit.raceHorses.get(whoWinRandom - 1);
 				raceCircuit.setRaceHorseWinner(raceHorseWhoWin);
 				raceCircuit.setDateLastCourse(new Date());
-
+				raceHorseWhoWin.nbrOfWin++;
 				System.out.println("The winner of the Race Circuit " + raceCircuit.name + " is the Horse "
 						+ raceHorseWhoWin.name + " the " + raceCircuit.dateLastCourse.toString());
 			} else {
