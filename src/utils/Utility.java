@@ -28,15 +28,22 @@ public class Utility {
 		List<RaceCircuit> allRaceCircuits = raceCircuitController.getAllRaceCircuits();
 		for (int i = 0; i < allRaceCircuits.size(); i++) {
 			RaceCircuit raceCircuit = allRaceCircuits.get(i);
-			System.out.println("Name : " + raceCircuit.name);
+			if (raceCircuit.getDateLastCourse() != null) {
+				System.out.println(
+						"Name : " + raceCircuit.name + " - Last Race Date : " + raceCircuit.dateLastCourse.toString());
+			} else {
+				System.out.println("Name : " + raceCircuit.name + " - Last Race Date : no last race");
+			}
+
 		}
 	}
 
 	public static void displayAllRaceHorseByName() {
 		List<RaceHorse> allRaceHorses = raceHorseController.getAllRaceHorses();
 		for (int i = 0; i < allRaceHorses.size(); i++) {
-			System.out.println(
-					"Name : " + allRaceHorses.get(i).name + " - number of Win : " + allRaceHorses.get(i).nbrOfWin);
+			RaceHorse raceHorse = allRaceHorses.get(i);
+			System.out.println("Name : " + raceHorse.name + " - age : " + raceHorse.age + " - number of Win : "
+					+ raceHorse.nbrOfWin);
 		}
 	}
 
