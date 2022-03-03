@@ -29,7 +29,7 @@ class CsvDaoTest {
 		Files f = new Files(file, path, extention);
 
 		// when
-		assertTrue(csvDao.pathExist(f.getPath(), f.getName(), f.getExtention()));
+		assertTrue(csvDao.pathExist(f));
 
 		// then
 
@@ -44,7 +44,7 @@ class CsvDaoTest {
 		Files f = new Files(file, path, extention);
 
 		// when
-		assertFalse(csvDao.pathExist(f.getPath(), f.getName(), f.getExtention()));
+		assertFalse(csvDao.pathExist(f));
 		// then
 
 	}
@@ -58,7 +58,7 @@ class CsvDaoTest {
 		Files f = new Files(file, path, extention);
 
 		// when
-		assertFalse(csvDao.pathExist(f.getPath(), f.getName(), f.getExtention()));
+		assertFalse(csvDao.pathExist(f));
 		// then
 
 	}
@@ -74,7 +74,7 @@ class CsvDaoTest {
 
 		// firstline = ["test1", "nametest","datetest"];
 
-		assertTrue(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention()));
+		assertTrue(csvDao.createCsv(f));
 	}
 
 	@Test
@@ -88,7 +88,7 @@ class CsvDaoTest {
 
 		// firstline = ["test1", "nametest","datetest"];
 
-		assertFalse(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention()));
+		assertFalse(csvDao.createCsv(f));
 	}
 
 	@Test
@@ -105,7 +105,7 @@ class CsvDaoTest {
 
 		// firstline = ["test1", "nametest","datetest"];
 
-		assertTrue(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline()));
+		assertTrue(csvDao.createCsv(f));
 	}
 
 	@Test
@@ -119,7 +119,7 @@ class CsvDaoTest {
 
 		// firstline = ["test1", "nametest","datetest"];
 
-		assertFalse(csvDao.createCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline()));
+		assertTrue(csvDao.createCsv(f));
 	}
 
 	@Test
@@ -131,7 +131,7 @@ class CsvDaoTest {
 		Files f = new Files(file, path, extention);
 
 		// when
-		assertFalse(csvDao.pathExist(f.getPath(), f.getName(), f.getExtention()));
+		assertFalse(csvDao.pathExist(f));
 
 		// then
 
@@ -153,7 +153,7 @@ class CsvDaoTest {
 		// display time and date using toString()
 		System.out.println(date.toString());
 
-		assertNotNull(csvDao.getDataOnCsv(f.getPath(), f.getName(), f.getExtention()));
+		assertNotNull(csvDao.getDataOnCsv(f));
 
 	}
 
@@ -166,7 +166,7 @@ class CsvDaoTest {
 		Files f = new Files(file, path, extention);
 
 		// when
-		assertNotNull(csvDao.getDataOnCsv(file, path, extention));
+		assertNotNull(csvDao.getDataOnCsv(f));
 
 	}
 
@@ -187,7 +187,7 @@ class CsvDaoTest {
 		// RaceTrack t = new RaceTrack();
 		// Data.getRaceTrack().add(t);
 
-		assertTrue(csvDao.updateCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline(), f.getData()));
+		assertTrue(csvDao.updateCsv(f));
 
 	}
 
@@ -207,7 +207,7 @@ class CsvDaoTest {
 		// RaceTrack t = new RaceTrack();
 		// Data.getRaceTrack().add(t);
 
-		assertFalse(csvDao.updateCsv(f.getPath(), f.getName(), f.getExtention(), f.getFirstline(), f.getData()));
+		assertFalse(csvDao.updateCsv(f));
 
 	}
 

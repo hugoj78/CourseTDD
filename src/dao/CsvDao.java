@@ -10,22 +10,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import model.Files;
+
 public class CsvDao {
 
-	public boolean pathExist(String path, String file, String extention) {
+	public boolean pathExist(Files file) {
 
-		File csvFile = new File(path + '/' + file + '.' + extention);
+		File csvFile = new File(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
 		if (csvFile.isFile()) {
 			return true;
-			// create BufferedReader and read data from csv
 		}
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public List<List<String>> getDataOnCsv(String path, String file, String extention) {
+	public List<List<String>> getDataOnCsv(Files file) {
 		List<List<String>> data = new ArrayList<>();
-		try (BufferedReader csvReader = new BufferedReader(new FileReader(path + '/' + file + '.' + extention))) {
+		try (BufferedReader csvReader = new BufferedReader(
+				new FileReader(file.getPath() + '/' + file.getName() + '.' + file.getExtention()))) {
 			String line;
 			while ((line = csvReader.readLine()) != null) {
 				String[] linesplit = line.split(";");
@@ -42,20 +44,20 @@ public class CsvDao {
 		return data;
 	}
 
-	public boolean updateCsv(String path, String file, String extention, List<String> firstline,
-			List<List<String>> rows) {
+	public boolean updateCsv(Files file) {
 		// TODO Auto-generated method stub
-		if (rows == null || firstline == null) {
+		if (file.getData() == null || file.getFirstline() == null) {
 
 			return false;
 		}
 
-		if (this.pathExist(path, file, extention) == true) {
+		if (this.pathExist(file) == true) {
 			try {
-				FileWriter csvWriter = new FileWriter(path + '/' + file + '.' + extention);
-				csvWriter.append(String.join(";", firstline));
+				FileWriter csvWriter = new FileWriter(
+						file.getPath() + '/' + file.getName() + '.' + file.getExtention());
+				csvWriter.append(String.join(";", file.getFirstline()));
 				csvWriter.append("\n");
-				for (List<String> row : rows) {
+				for (List<String> row : file.getData()) {
 
 					csvWriter.append(String.join(";", row));
 					csvWriter.append("\n");
@@ -70,49 +72,38 @@ public class CsvDao {
 		return true;
 	}
 
-	public Object getTenLastRace(String path, String file) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public boolean createCsv(Files file) {
+		FileWriter csvWriter = null;
+		if (file.getFirstline() == null || file.getFirstline().size() == 0) {
 
-	public boolean createCsv(String path, String file, String extention, List<String> row) {
-
-		if (row == null || row.size() == 0) {
-
-			return false;
-		}
-
-		if (this.pathExist(path, file, extention) == false) {
-			FileWriter csvWriter = null;
-			try {
-				csvWriter = new FileWriter(path + '/' + file + '.' + extention);
-				csvWriter.append(String.join(";", row));
-				csvWriter.append("\n");
-				csvWriter.flush();
-				csvWriter.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				return false;
+			if (this.pathExist(file) == false) {
+				try {
+					csvWriter = new FileWriter(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					return false;
+				}
 			}
+			// TODO Auto-generated method stub
+			return true;
+		} else {
+			if (this.pathExist(file) == false) {
 
-		}
-		// TODO Auto-generated method stub
-		return true;
-	}
+				try {
+					csvWriter = new FileWriter(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
+					csvWriter.append(String.join(";", file.getFirstline()));
+					csvWriter.append("\n");
+					csvWriter.flush();
+					csvWriter.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					return false;
+				}
 
-	public boolean createCsv(String path, String file, String extention) {
-
-		if (this.pathExist(path, file, extention) == false) {
-			FileWriter csvWriter = null;
-			try {
-				csvWriter = new FileWriter(path + '/' + file + '.' + extention);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				return false;
 			}
+			// TODO Auto-generated method stub
+			return true;
 		}
-		// TODO Auto-generated method stub
-		return true;
 	}
 
 }

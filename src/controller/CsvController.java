@@ -19,7 +19,7 @@ public class CsvController {
 	public ArrayList<RaceCircuit> getDataRaceCircuit(Files file) {
 
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-		List<List<String>> circuit = csvDao.getDataOnCsv(file.path, file.name, file.extention);
+		List<List<String>> circuit = csvDao.getDataOnCsv(file);
 		circuit.remove(0);
 		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
 
@@ -58,6 +58,11 @@ public class CsvController {
 		}
 		return tenCircuit;
 
+	}
+
+	public boolean saveCircuits(Files f, ArrayList<RaceCircuit> arrayCircuit) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

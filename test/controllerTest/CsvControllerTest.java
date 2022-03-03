@@ -3,6 +3,7 @@ package controllerTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,6 +85,7 @@ class CsvControllerTest {
 		ArrayList<RaceCircuit> tenLastCircuit = csvController.getTenLastCircuit(arrayCircuit);
 
 		assertNotEquals(10, tenLastCircuit.size());
+		assertEquals(5, tenLastCircuit.size());
 
 	}
 
@@ -142,6 +144,25 @@ class CsvControllerTest {
 		ArrayList<RaceCircuit> tenLastCircuit = csvController.getTenLastCircuit(arrayCircuit);
 
 		assertEquals(trueTenLastArrayCircuit, tenLastCircuit);
+
+	}
+
+	@Test
+	public void sendCircuitToCsvTest() {
+
+		RaceHorse h1 = new RaceHorse("Toto", 23);
+		Date d1 = new Date();
+		RaceCircuit c1 = new RaceCircuit("ImNotPablito", d1, h1);
+
+		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
+		arrayCircuit.add(c1);
+
+		String path = "./src/ressources";
+		String file = "circuits";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+
+		assertTrue(csvController.saveCircuits(f, arrayCircuit));
 
 	}
 
