@@ -107,6 +107,7 @@ class CsvDaoTest {
 
 	@Test
 	public void createCsvAndFirstLineTest() {
+
 		// given
 		String path = "./src/ressources";
 		String file = "test";
@@ -116,6 +117,8 @@ class CsvDaoTest {
 		firstline.add("test3");
 
 		Files f = new Files(file, path, extention, firstline);
+
+		boolean deleteFile = csvDao.deleteCsv(f);
 
 		// firstline = ["test1", "nametest","datetest"];
 
@@ -222,6 +225,40 @@ class CsvDaoTest {
 		// Data.getRaceTrack().add(t);
 
 		assertFalse(csvDao.updateCsv(f));
+
+	}
+
+	@Test
+	public void deleteFileTest() {
+		// given
+		String path = "./src/ressources";
+		String file = "test";
+		String extention = "csv";
+
+		Files f = new Files(file, path, extention);
+		boolean newCsv = csvDao.createCsv(f);
+		boolean deleteCsv = csvDao.deleteCsv(f);
+		boolean pathExist = csvDao.pathExist(f);
+
+		// when
+		assertTrue(newCsv);
+		assertTrue(deleteCsv);
+		assertFalse(pathExist);
+
+	}
+
+	@Test
+	public void deleteFileNullTest() {
+		// given
+		String path = "./src/ressources";
+		String file = null;
+		String extention = "csv";
+
+		Files f = new Files(file, path, extention);
+		boolean deleteCsv = csvDao.deleteCsv(f);
+
+		// when
+		assertFalse(deleteCsv);
 
 	}
 

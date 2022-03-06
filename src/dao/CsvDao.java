@@ -88,6 +88,7 @@ public class CsvDao {
 			if (this.pathExist(file) == false) {
 
 				try {
+
 					csvWriter = new FileWriter(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
 					csvWriter.append(String.join(";", file.getFirstline()));
 					csvWriter.append("\n");
@@ -102,6 +103,25 @@ public class CsvDao {
 			// TODO Auto-generated method stub
 			return true;
 		}
+	}
+
+	public boolean deleteCsv(Files file) {
+		if (this.pathExist(file) == true) {
+
+			try {
+				File fileToDelete = new File(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
+				fileToDelete.delete();
+				return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				return false;
+			}
+
+		} else {
+			return false;
+		}
+		// TODO Auto-generated method stub
+
 	}
 
 }
