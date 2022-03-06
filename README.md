@@ -8,15 +8,24 @@ EGU Hugo-Jean
 
 ## 🖥️ Procédure de développement 🖥️
 
-Xxxxx
+Nous avons suivins la méthode TDD (Test Driven Development) pour développer les différentes fonctionnalités de ce programme.
 
-Xxxx
+Nous avons donc commencé par mettre en place les modeles dont nous allions avoir besoins : RaceTrack, RaceCircuit, RaceHorse.
 
-## 📖 Fonctionnalités 📖
+Par la suite nous avons rajouté les classes Dao et Dao test. Nous avons ensuite développé les tests DAO puis développer les fonctionnalités.
 
-Xxxx
+Nous avons ensuite rajoutes les classes controller et controller test. Nous avons ensuite développé les tests controller puis développer les fonctionnalités.
 
-Xxxx
+Nous avons ensuite développer la parties menu et utily.
+
+Nous avons ensuite rajouter la partie de sauvegarde avec CSV Test puis nous avons développer les fonctionnalités.
+
+Notre stratégie de test consiste donc à développer les tests en avance puis les fonctionnalités. Le but étant de couvrir tous les cas possible avec différents test pour chaque fonctionnalité.
+
+## 📖 Coverage 📖
+
+<img width="1438" alt="Screenshot 2022-03-06 at 20 59 10" src="https://user-images.githubusercontent.com/12957553/156939969-30c2fc51-3453-4e43-a5b9-63bb1a969f9b.png">
+
 
 ## 🍕 Consigne 🍕
 
