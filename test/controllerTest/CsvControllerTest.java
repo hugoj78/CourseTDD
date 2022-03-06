@@ -1,6 +1,7 @@
 package controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -163,6 +164,25 @@ class CsvControllerTest {
 		Files f = new Files(file, path, extention);
 
 		assertTrue(csvController.saveCircuits(f, arrayCircuit));
+
+	}
+
+	@Test
+	public void sendCircuitToCsvPathNullTest() {
+
+		RaceHorse h1 = new RaceHorse("Toto", 23);
+		Date d1 = new Date();
+		RaceCircuit c1 = new RaceCircuit("ImNotPablito", d1, h1);
+
+		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
+		arrayCircuit.add(c1);
+
+		String path = null;
+		String file = "circuits";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+
+		assertFalse(csvController.saveCircuits(f, arrayCircuit));
 
 	}
 

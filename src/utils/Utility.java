@@ -1,11 +1,14 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+import controller.CsvController;
 import controller.RaceCircuitController;
 import controller.RaceHorseController;
+import model.Files;
 import model.RaceCircuit;
 import model.RaceHorse;
 
@@ -13,6 +16,7 @@ public class Utility {
 
 	static RaceCircuitController raceCircuitController = new RaceCircuitController();
 	static RaceHorseController raceHorseController = new RaceHorseController();
+	static CsvController csvController = new CsvController();
 
 	public static String userInputString() {
 		Scanner sc = new Scanner(System.in);
@@ -57,8 +61,38 @@ public class Utility {
 
 	}
 
+	public static void displayTenLastRaceCircuit() {
+
+		String path = "./src/ressources";
+		String file = "circuits";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+
+		ArrayList<RaceCircuit> allRaceCircuitSave = csvController.getDataRaceCircuit(f);
+		List<RaceCircuit> tenLastRaceCircuit = csvController.getTenLastCircuit(allRaceCircuitSave);
+		for (int i = 0; i < tenLastRaceCircuit.size(); i++) {
+			System.out.println("Name : " + tenLastRaceCircuit.get(i).getName() + ", Date : "
+					+ tenLastRaceCircuit.get(i).getDateLastCourse() + ", HorseWinner : "
+					+ tenLastRaceCircuit.get(i).getRaceHorseWinner().getName());
+		}
+
+	}
+
 	public static int randomInt(int min, int max) {
 		return ThreadLocalRandom.current().nextInt(min, max + 1);
+
+	}
+
+	public static boolean saveAllRaceCircuit() {
+		String path = "./src/ressources";
+		String file = "circuits";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+		ArrayList<RaceCircuit> allRaceCircuitSave = csvController.getDataRaceCircuit(f);
+		List<RaceCircuit> allRaceCircuits = raceCircuitController.getAllRaceCircuits();
+		allRaceCircuitSave.addAll(allRaceCircuits);
+
+		return csvController.saveCircuits(f, allRaceCircuitSave);
 
 	}
 

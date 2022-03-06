@@ -15,10 +15,10 @@ import model.RaceHorse;
 public class CsvController {
 
 	CsvDao csvDao = new CsvDao();
+	SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
 	public ArrayList<RaceCircuit> getDataRaceCircuit(Files file) {
 
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 		List<List<String>> circuit = csvDao.getDataOnCsv(file);
 		circuit.remove(0);
 		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
@@ -29,6 +29,7 @@ public class CsvController {
 				String name = circuit.get(i).get(0).toString();
 				Date date = formatDate.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
 				// TODO CHANGER AGE
+
 				RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2), 0);
 				arrayCircuit.add(new RaceCircuit(name, date, besthorse));
 
@@ -61,8 +62,34 @@ public class CsvController {
 	}
 
 	public boolean saveCircuits(Files f, ArrayList<RaceCircuit> arrayCircuit) {
+		List<List<String>> circuits = new ArrayList<>();
+
+		for (int i = 0; i < arrayCircuit.size(); i++) {
+
+			List<String> circuit = new ArrayList<String>();
+			String name = arrayCircuit.get(i).getName();
+			String date = formatDate.format(arrayCircuit.get(i).getDateLastCourse());
+			String bestHosre = arrayCircuit.get(i).getRaceHorseWinner().getName();
+			circuit.add(name);
+			circuit.add(date);
+			circuit.add(bestHosre);
+
+			circuits.add(circuit);
+
+		}
+
+		List<String> firstline = new ArrayList<String>();
+
+		firstline.add("name");
+		firstline.add("date");
+		firstline.add("RaceHorse");
+		f.setFirstline(firstline);
+		f.setData(circuits);
+
+		return csvDao.updateCsv(f);
+
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 
 }

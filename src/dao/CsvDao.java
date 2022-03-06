@@ -46,29 +46,27 @@ public class CsvDao {
 
 	public boolean updateCsv(Files file) {
 		// TODO Auto-generated method stub
-		if (file.getData() == null || file.getFirstline() == null) {
+		if (file.getData() == null || file.getFirstline() == null || this.pathExist(file) == false) {
 
 			return false;
 		}
 
-		if (this.pathExist(file) == true) {
-			try {
-				FileWriter csvWriter = new FileWriter(
-						file.getPath() + '/' + file.getName() + '.' + file.getExtention());
-				csvWriter.append(String.join(";", file.getFirstline()));
-				csvWriter.append("\n");
-				for (List<String> row : file.getData()) {
+		try {
+			FileWriter csvWriter = new FileWriter(file.getPath() + '/' + file.getName() + '.' + file.getExtention());
+			csvWriter.append(String.join(";", file.getFirstline()));
+			csvWriter.append("\n");
+			for (List<String> row : file.getData()) {
 
-					csvWriter.append(String.join(";", row));
-					csvWriter.append("\n");
-				}
-				csvWriter.flush();
-				csvWriter.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				return false;
+				csvWriter.append(String.join(";", row));
+				csvWriter.append("\n");
 			}
+			csvWriter.flush();
+			csvWriter.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			return false;
 		}
+
 		return true;
 	}
 

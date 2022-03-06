@@ -43,6 +43,8 @@ public class Menu {
 
 		System.out.println("7 - Start a race");
 
+		System.out.println("8 - Save Game");
+
 		switch (Utility.userInputString()) {
 		case "1":
 			System.out.println("Type the new Name :");
@@ -65,6 +67,7 @@ public class Menu {
 			break;
 		case "4":
 			System.out.println("=== Ten Last Result ===");
+			Utility.displayTenLastRaceCircuit();
 
 			break;
 		case "5":
@@ -235,6 +238,17 @@ public class Menu {
 						+ raceHorseWhoWin.name + " the " + raceCircuit.dateLastCourse.toString());
 			} else {
 				System.out.println("There is no RaceCircuit with this name");
+			}
+
+			break;
+
+		case "8":
+			System.out.println("=== You decide to save your game ===");
+			boolean save = Utility.saveAllRaceCircuit();
+			if (save == true) {
+				System.out.println("Save Succes <3");
+			} else {
+				System.out.println("Ah shit.... here we go again");
 			}
 
 			break;
