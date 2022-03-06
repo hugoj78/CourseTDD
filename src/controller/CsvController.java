@@ -19,28 +19,31 @@ public class CsvController {
 
 	public ArrayList<RaceCircuit> getDataRaceCircuit(Files file) {
 
-		List<List<String>> circuit = csvDao.getDataOnCsv(file);
-		circuit.remove(0);
-		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
+		if (csvDao.pathExist(file)) {
+			List<List<String>> circuit = csvDao.getDataOnCsv(file);
+			circuit.remove(0);
+			ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
 
-		for (int i = 0; i < circuit.size(); i++) {
+			for (int i = 0; i < circuit.size(); i++) {
 
-			try {
-				String name = circuit.get(i).get(0).toString();
-				Date date = formatDate.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
-				// TODO CHANGER AGE
+				try {
+					String name = circuit.get(i).get(0).toString();
+					Date date = formatDate.parse(circuit.get(i).get(1).replaceAll("Z$", "+0000"));
+					// TODO CHANGER AGE
 
-				RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2), 0);
-				arrayCircuit.add(new RaceCircuit(name, date, besthorse));
+					RaceHorse besthorse = new RaceHorse(circuit.get(i).get(2), 0);
+					arrayCircuit.add(new RaceCircuit(name, date, besthorse));
 
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				System.out.println(e);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e);
+				}
+
 			}
 
+			return arrayCircuit;
 		}
-
-		return arrayCircuit;
+		return new ArrayList<RaceCircuit>();
 
 	}
 
@@ -62,14 +65,28 @@ public class CsvController {
 	}
 
 	public boolean saveCircuits(Files f, ArrayList<RaceCircuit> arrayCircuit) {
+
+		if (csvDao.pathExist(f) == false) {
+			boolean create = csvDao.createCsv(f);
+			if (create == false) {
+				return false;
+			}
+
+		}
+
 		List<List<String>> circuits = new ArrayList<>();
 
 		for (int i = 0; i < arrayCircuit.size(); i++) {
 
 			List<String> circuit = new ArrayList<String>();
 			String name = arrayCircuit.get(i).getName();
-			String date = formatDate.format(arrayCircuit.get(i).getDateLastCourse());
-			String bestHosre = arrayCircuit.get(i).getRaceHorseWinner().getName();
+
+			String date = (arrayCircuit.get(i).getDateLastCourse() != null)
+					? formatDate.format(arrayCircuit.get(i).getDateLastCourse())
+					: formatDate.format(new Date(0));
+			String bestHosre = (arrayCircuit.get(i).getRaceHorseWinner().getName() != null)
+					? arrayCircuit.get(i).getRaceHorseWinner().getName()
+					: "No Winner";
 			circuit.add(name);
 			circuit.add(date);
 			circuit.add(bestHosre);
@@ -85,14 +102,6 @@ public class CsvController {
 		firstline.add("RaceHorse");
 		f.setFirstline(firstline);
 		f.setData(circuits);
-
-		if (csvDao.pathExist(f) == false) {
-			boolean create = csvDao.createCsv(f);
-			if (create == false) {
-				return false;
-			}
-
-		}
 
 		return csvDao.updateCsv(f);
 
