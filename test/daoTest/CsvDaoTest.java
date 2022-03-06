@@ -20,10 +20,10 @@ class CsvDaoTest {
 	List<String> firstline = new ArrayList<String>();
 
 	@Test
-	public void findcsvWithPathFileAndExtentionTest() {
+	public void findcsvWithPathFileAndExtentionExistTest() {
 		// given
 		String path = "./src/ressources";
-		String file = "bdd_test";
+		String file = "circuits_test";
 		String extention = "csv";
 
 		Files f = new Files(file, path, extention);
@@ -31,6 +31,20 @@ class CsvDaoTest {
 		// when
 		assertTrue(csvDao.pathExist(f));
 
+		// then
+
+	}
+
+	@Test
+	public void findcsvWithPathFillAndExtentionDoesNotExistTest() {
+
+		String path = "./src/ressources";
+		String file = "circuits_test_not_here";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+
+		// when
+		assertFalse(csvDao.pathExist(f));
 		// then
 
 	}

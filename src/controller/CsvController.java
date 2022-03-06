@@ -35,7 +35,7 @@ public class CsvController {
 
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e);
 			}
 
 		}
@@ -85,6 +85,14 @@ public class CsvController {
 		firstline.add("RaceHorse");
 		f.setFirstline(firstline);
 		f.setData(circuits);
+
+		if (csvDao.pathExist(f) == false) {
+			boolean create = csvDao.createCsv(f);
+			if (create == false) {
+				return false;
+			}
+
+		}
 
 		return csvDao.updateCsv(f);
 

@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +21,12 @@ import model.RaceHorse;
 class CsvControllerTest {
 
 	CsvController csvController = new CsvController();
+	SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
 	@Test
 	public void getDataRaceCircuitTest() {
 		String path = "./src/ressources";
-		String file = "circuits";
+		String file = "circuits_test";
 		String extention = "csv";
 		Files f = new Files(file, path, extention);
 
@@ -149,7 +152,7 @@ class CsvControllerTest {
 	}
 
 	@Test
-	public void sendCircuitToCsvTest() {
+	public void saveCircuitsToCsvTest() {
 
 		RaceHorse h1 = new RaceHorse("Toto", 23);
 		Date d1 = new Date();
@@ -159,7 +162,7 @@ class CsvControllerTest {
 		arrayCircuit.add(c1);
 
 		String path = "./src/ressources";
-		String file = "circuits";
+		String file = "circuits_test";
 		String extention = "csv";
 		Files f = new Files(file, path, extention);
 
@@ -168,7 +171,7 @@ class CsvControllerTest {
 	}
 
 	@Test
-	public void sendCircuitToCsvPathNullTest() {
+	public void saveCircuitsToCsvPathNullTest() {
 
 		RaceHorse h1 = new RaceHorse("Toto", 23);
 		Date d1 = new Date();
@@ -178,11 +181,63 @@ class CsvControllerTest {
 		arrayCircuit.add(c1);
 
 		String path = null;
-		String file = "circuits";
+		String file = "circuits_test";
 		String extention = "csv";
 		Files f = new Files(file, path, extention);
 
 		assertFalse(csvController.saveCircuits(f, arrayCircuit));
+
+	}
+
+	@Test
+	public void saveCircuitsToCsvAndCompareToGetTest() {
+
+		RaceHorse h1 = new RaceHorse("Toto", 23);
+		Date d1 = new Date();
+		RaceCircuit c1 = new RaceCircuit("ImNotPablito", d1, h1);
+
+		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
+		arrayCircuit.add(c1);
+
+		String path = "./src/ressources";
+		String file = "circuits_test";
+		String extention = "csv";
+		Files f = new Files(file, path, extention);
+		boolean save = csvController.saveCircuits(f, arrayCircuit);
+
+		ArrayList<RaceCircuit> readCsvCircuit = csvController.getDataRaceCircuit(f);
+
+		List<List<String>> afterSaveCircuits = new ArrayList<>();
+
+		for (int i = 0; i < readCsvCircuit.size(); i++) {
+
+			List<String> circuit = new ArrayList<String>();
+			String name = readCsvCircuit.get(i).getName();
+			String date = formatDate.format(readCsvCircuit.get(i).getDateLastCourse());
+			String bestHosre = readCsvCircuit.get(i).getRaceHorseWinner().getName();
+			circuit.add(name);
+			circuit.add(date);
+			circuit.add(bestHosre);
+
+			afterSaveCircuits.add(circuit);
+		}
+
+		List<List<String>> beforeSaveCircuits = new ArrayList<>();
+
+		for (int i = 0; i < arrayCircuit.size(); i++) {
+
+			List<String> circuit = new ArrayList<String>();
+			String name = arrayCircuit.get(i).getName();
+			String date = formatDate.format(arrayCircuit.get(i).getDateLastCourse());
+			String bestHosre = arrayCircuit.get(i).getRaceHorseWinner().getName();
+			circuit.add(name);
+			circuit.add(date);
+			circuit.add(bestHosre);
+
+			beforeSaveCircuits.add(circuit);
+		}
+
+		assertEquals(beforeSaveCircuits, afterSaveCircuits);
 
 	}
 
