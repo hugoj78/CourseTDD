@@ -24,7 +24,7 @@ Notre stratégie de test consiste donc à développer les tests en avance puis l
 
 ## 📖 Coverage 📖
 
-<img width="1438" alt="Screenshot 2022-03-06 at 20 59 10" src="https://user-images.githubusercontent.com/12957553/156939969-30c2fc51-3453-4e43-a5b9-63bb1a969f9b.png">
+<img width="1438" alt="Screenshot 2022-03-06 at 21 01 30" src="https://user-images.githubusercontent.com/12957553/156940063-a0800794-acd0-408c-b3a0-d4d2fbda9ded.png">
 
 
 ## 🍕 Consigne 🍕
