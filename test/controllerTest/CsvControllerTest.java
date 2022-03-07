@@ -276,14 +276,14 @@ class CsvControllerTest {
 		ArrayList<RaceCircuit> arrayCircuit = new ArrayList<RaceCircuit>();
 		arrayCircuit.add(c1);
 
-		c1.setDateLastCourse(new Date(0));
-		c1.setRaceHorseWinner(new RaceHorse("No Winner", 23));
-
 		String path = "./src/ressources";
 		String file = "circuits_test";
 		String extention = "csv";
 		Files f = new Files(file, path, extention);
 		boolean save = csvController.saveCircuits(f, arrayCircuit);
+
+		c1.setDateLastCourse(new Date(0));
+		c1.setRaceHorseWinner(new RaceHorse("No Winner", 23));
 
 		ArrayList<RaceCircuit> readCsvCircuit = csvController.getDataRaceCircuit(f);
 

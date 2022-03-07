@@ -84,12 +84,13 @@ public class CsvController {
 			String date = (arrayCircuit.get(i).getDateLastCourse() != null)
 					? formatDate.format(arrayCircuit.get(i).getDateLastCourse())
 					: formatDate.format(new Date(0));
-			String bestHosre = (arrayCircuit.get(i).getRaceHorseWinner().getName() != null)
+
+			String bestHorse = (arrayCircuit.get(i).getRaceHorseWinner() != null)
 					? arrayCircuit.get(i).getRaceHorseWinner().getName()
 					: "No Winner";
 			circuit.add(name);
 			circuit.add(date);
-			circuit.add(bestHosre);
+			circuit.add(bestHorse);
 
 			circuits.add(circuit);
 
